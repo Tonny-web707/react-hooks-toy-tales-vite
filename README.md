@@ -39,3 +39,7 @@ Run:
 
 ```bash
 cat README.md
+
+## Application Screenshot
+
+![Toy Tales Application](./screenshot.png)
