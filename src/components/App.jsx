@@ -24,6 +24,18 @@ function App() {
     setToys((currentToys) => [...currentToys, newToy]);
   }
 
+  function handleDeleteToy(toyId) {
+    fetch(`http://localhost:3001/toys/${toyId}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        setToys((currentToys) =>
+          currentToys.filter((toy) => toy.id !== toyId)
+        );
+      })
+      .catch((error) => console.error("Error deleting toy:", error));
+  }
+
   return (
     <>
       <Header />
@@ -34,9 +46,10 @@ function App() {
         <button onClick={handleClick}>Add a Toy</button>
       </div>
 
-      <ToyContainer toys={toys} />
+      <ToyContainer toys={toys} onDeleteToy={handleDeleteToy} />
     </>
   );
 }
 
 export default App;
+

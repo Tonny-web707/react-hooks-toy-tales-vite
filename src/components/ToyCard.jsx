@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 
-function ToyCard({ toy }) {
+function ToyCard({ toy, onDeleteToy }) {
   const [likes, setLikes] = useState(toy.likes);
 
   function handleLike() {
@@ -21,6 +21,10 @@ function ToyCard({ toy }) {
       .catch((error) => console.error("Error liking toy:", error));
   }
 
+  function handleDonate() {
+    onDeleteToy(toy.id);
+  }
+
   return (
     <div className="card" data-testid="toy-card">
       <h2>{toy.name}</h2>
@@ -37,7 +41,9 @@ function ToyCard({ toy }) {
         Like {"<3"}
       </button>
 
-      <button className="del-btn">Donate to GoodWill</button>
+      <button className="del-btn" onClick={handleDonate}>
+        Donate to GoodWill
+      </button>
     </div>
   );
 }
